@@ -50,7 +50,7 @@ struct Zoomable: ViewModifier {
     @State private var offset: CGSize = .zero
     @GestureState private var dragOffset: CGSize = .zero
 
-    @State private var prevCurrentState: MagnificationGesture.Value = .zero
+ //   @State private var prevCurrentState: MagnificationGesture.Value = .zero
     
   
    
@@ -92,10 +92,10 @@ struct Zoomable: ViewModifier {
         VStack {
             content
                 .scaleEffect(max(scale * pinchScale, 1))
-               // .offset(x: offset.width + dragOffset.width, y: offset.height + dragOffset.height)
+                .offset(x: offset.width + dragOffset.width, y: offset.height + dragOffset.height)
                 .gesture(
                     pinchGesture
-                       // .simultaneously(with: dragGesture)
+                        .simultaneously(with: dragGesture)
                 )
                 .onChange(of: dragOffset) { newValue in
                     print("<0><1> dragOffset.width = \(newValue.width)")
